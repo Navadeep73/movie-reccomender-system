@@ -76,3 +76,5 @@ streamlit run app.py
 ## 📸 Screenshot
 
 ![App Screenshot](screenshot.png)
+## Try the App :
+https://huggingface.co/spaces/navadeep73/movie-reccomender-system
