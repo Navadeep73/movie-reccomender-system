@@ -2,22 +2,22 @@ import pickle
 import streamlit as st
 import requests
 
-# ---------------- PAGE CONFIG ---------------- #
+
 st.set_page_config(page_title="Movie Recommender", layout="wide")
 
-# ---------------- API ---------------- #
+
 API_KEY = "87108faebe8f0b28a7d78b62c70daa6e"
 IMAGE_URL = "https://image.tmdb.org/t/p/w500/"
 PLACEHOLDER = "https://via.placeholder.com/500x750?text=No+Image"
 
-# ---------------- LOAD DATA ---------------- #
+
 @st.cache_data
 def load_data():
     movies = pickle.load(open('movie_list.pkl', 'rb'))
     similarity = pickle.load(open('similarity.pkl', 'rb'))
     return movies, similarity
 
-# ---------------- FETCH POSTER ---------------- #
+
 def fetch_poster(movie_id):
     try:
         url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={API_KEY}"
@@ -31,7 +31,7 @@ def fetch_poster(movie_id):
     except:
         return PLACEHOLDER
 
-# ---------------- RECOMMEND ---------------- #
+
 def recommend(movie):
     index = movies[movies['title'] == movie].index[0]
 
@@ -51,7 +51,7 @@ def recommend(movie):
 
     return names, posters
 
-# ---------------- UI DESIGN ---------------- #
+
 
 # Custom CSS 🔥
 st.markdown("""
@@ -82,7 +82,7 @@ movies, similarity = load_data()
 movie_list = movies['title'].values
 selected_movie = st.selectbox("🎥 Choose a movie", movie_list)
 
-# ---------------- BUTTON ---------------- #
+
 if st.button("🚀 Recommend"):
     names, posters = recommend(selected_movie)
 
