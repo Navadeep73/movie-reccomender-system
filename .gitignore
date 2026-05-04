@@ -1,5 +1,6 @@
 similarity.pkl
 *.pkl
+!movie_list.pkl
 __pycache__/
 *.pyc
 .env
